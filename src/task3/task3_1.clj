@@ -8,7 +8,7 @@
 
 (print "Memoize elapsed times: \n")
 (let [fun (ic/integral-mem tfun/test-function-polynomial 0.05)]
- (time (fun -70 70))
-(time (fun -70 70))
-(time (fun -70 70)))
+  (time (fun -70 70))
+  (time (fun -70 70))
+  (time (fun -70 70)))
 

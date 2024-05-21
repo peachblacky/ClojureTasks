@@ -7,8 +7,10 @@
   (if (< a b)
     (+
       (trapezoid-area f a (+ a h))
-      (integral-default f (+ a h) b h))
-    0))
+      (integral-default f (+ a h) b h)
+      )
+    0)
+  )
 
 (defn integral-mem [f h]
   (memoize (fn compute [a b]
