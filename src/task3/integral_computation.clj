@@ -13,13 +13,13 @@
   )
 
 (defn integral-mem [f h]
-  (memoize (fn compute [a b]
-             (if (< a b)
-               (+ (trapezoid-area f a (+ a h)) (compute (+ a h) b))
-               0)
-             )
-           )
-  )
+  (letfn [(partial-integral [b]
+            (if (<= b 0)
+              0
+              (+ (trapezoid-area f (- b h) b)
+                 (memoized-partial-integral (- b h)))))]
+    (def memoized-partial-integral (memoize partial-integral))
+    (fn [b] (memoized-partial-integral b))))
 
 (defn integral-inf [function step_size]
   (let [seq (map first
